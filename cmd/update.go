@@ -1,27 +1,31 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 
 	"github.com/lucaslmuller/tasktracker/cmd/storage"
 )
 
-func update(s *storage.Storage, args []string) {
+func update(s *storage.Storage, args []string) error {
 	id, err := strconv.Atoi(args[0])
 	if err != nil {
-		fmt.Println("Invalid id")
-		return
+		return errors.New("invalid id")
 	}
 
-	task := s.GetTaskById(id)
-	if task == nil {
-		fmt.Println("Task not found")
-		return
+	task, err := s.GetTaskById(id)
+	if err != nil {
+		return err
 	}
 
 	task.Description = args[1]
 
-	s.UpdateTask(*task)
+	if err = s.UpdateTask(*task); err != nil {
+		return err
+	}
+
 	fmt.Printf("Updated task with id %d\n", id)
+
+	return nil
 }

@@ -5,6 +5,6 @@ import (
 	"github.com/lucaslmuller/tasktracker/types"
 )
 
-func add(s *storage.Storage, args []string) {
-	s.AddTask(types.NewTask(args[0]))
+func add(s *storage.Storage, args []string) error {
+	return s.AddTask(types.NewTask(args[0]))
 }

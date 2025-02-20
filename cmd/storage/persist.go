@@ -5,7 +5,12 @@ import (
 	"os"
 )
 
-func (s *Storage) Persist() {
-	jsonString, _ := json.Marshal(s.Tasks)
-	os.WriteFile("data/data.json", jsonString, os.ModePerm)
+func (s *Storage) Persist() error {
+	jsonString, err := json.Marshal(s.Tasks)
+
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile("data/data.json", jsonString, os.ModePerm)
 }

@@ -8,22 +8,27 @@ import (
 )
 
 func Execute(s *storage.Storage) {
+	var err error
 	args := os.Args[1:]
 
 	switch args[0] {
 	case "add":
-		add(s, args[1:])
+		err = add(s, args[1:])
 	case "list":
 		list(s, args[1:])
 	case "delete":
-		delete(s, args[1:])
+		err = delete(s, args[1:])
 	case "update":
-		update(s, args[1:])
+		err = update(s, args[1:])
 	case "mark-done":
-		markDone(s, args[1:])
+		err = markDone(s, args[1:])
 	case "mark-in-progress":
-		markInProgress(s, args[1:])
+		err = markInProgress(s, args[1:])
 	default:
 		fmt.Println("Invalid command")
+	}
+
+	if err != nil {
+		fmt.Println(err)
 	}
 }
