@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/lucaslmuller/tasktracker/types"
+	"github.com/lucaslmuller/tasktracker/internal/task"
 )
 
 type Storage struct {
 	Id    int
-	Tasks []types.Task
+	Tasks []task.Task
 }
 
 func Setup() *Storage {
@@ -34,8 +34,8 @@ func setupDataFile() {
 	}
 }
 
-func readTasks() (tasks []types.Task, largestId int) {
-	tasks = []types.Task{}
+func readTasks() (tasks []task.Task, largestId int) {
+	tasks = []task.Task{}
 	largestId = 0
 
 	file, err := os.ReadFile("data/data.json")

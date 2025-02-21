@@ -3,10 +3,10 @@ package storage
 import (
 	"errors"
 
-	"github.com/lucaslmuller/tasktracker/types"
+	"github.com/lucaslmuller/tasktracker/internal/task"
 )
 
-func (s *Storage) AddTask(task types.Task) error {
+func (s *Storage) AddTask(task task.Task) error {
 	task.Id = s.Id
 	s.Id++
 	s.Tasks = append(s.Tasks, task)
@@ -24,7 +24,7 @@ func (s *Storage) DeleteTask(id int) error {
 	return s.Persist()
 }
 
-func (s *Storage) UpdateTask(task types.Task) error {
+func (s *Storage) UpdateTask(task task.Task) error {
 	for i, t := range s.Tasks {
 		if t.Id == task.Id {
 			s.Tasks[i] = task
@@ -34,7 +34,7 @@ func (s *Storage) UpdateTask(task types.Task) error {
 	return s.Persist()
 }
 
-func (s *Storage) GetTaskById(id int) (*types.Task, error) {
+func (s *Storage) GetTaskById(id int) (*task.Task, error) {
 	for _, t := range s.Tasks {
 		if t.Id == id {
 			return &t, nil
@@ -43,8 +43,8 @@ func (s *Storage) GetTaskById(id int) (*types.Task, error) {
 	return nil, errors.New("task not found")
 }
 
-func (s *Storage) GetByStatus(status string) []types.Task {
-	var tasks []types.Task
+func (s *Storage) GetByStatus(status string) []task.Task {
+	var tasks []task.Task
 	for _, t := range s.Tasks {
 		if t.Status == status {
 			tasks = append(tasks, t)
@@ -53,6 +53,6 @@ func (s *Storage) GetByStatus(status string) []types.Task {
 	return tasks
 }
 
-func (s *Storage) GetTasks() []types.Task {
+func (s *Storage) GetTasks() []task.Task {
 	return s.Tasks
 }

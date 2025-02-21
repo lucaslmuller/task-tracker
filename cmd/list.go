@@ -3,12 +3,12 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/lucaslmuller/tasktracker/cmd/storage"
-	"github.com/lucaslmuller/tasktracker/types"
+	"github.com/lucaslmuller/tasktracker/internal/storage"
+	"github.com/lucaslmuller/tasktracker/internal/task"
 )
 
 func list(s *storage.Storage, args []string) {
-	var tasks []types.Task
+	var tasks []task.Task
 
 	if len(args) == 0 {
 		tasks = s.GetTasks()

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/lucaslmuller/tasktracker/cmd/storage"
+	"github.com/lucaslmuller/tasktracker/internal/storage"
 )
 
 func markDone(s *storage.Storage, args []string) error {

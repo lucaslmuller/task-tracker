@@ -1,4 +1,4 @@
-package types
+package task
 
 import "time"
 

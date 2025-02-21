@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/lucaslmuller/tasktracker/cmd/storage"
+	"github.com/lucaslmuller/tasktracker/internal/storage"
 )
 
 func delete(s *storage.Storage, args []string) error {

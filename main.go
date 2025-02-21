@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/lucaslmuller/tasktracker/cmd"
-	"github.com/lucaslmuller/tasktracker/cmd/storage"
+	"github.com/lucaslmuller/tasktracker/internal/storage"
 )
 
 func main() {
